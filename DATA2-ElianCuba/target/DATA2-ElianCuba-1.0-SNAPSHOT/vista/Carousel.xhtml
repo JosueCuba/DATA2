@@ -17,8 +17,18 @@
                 margin-bottom: 20px;
             }
         </style>
+        <p:tabMenu activeIndex="#{param.i}">
+            <p:menuitem value="PickList" outcome="PickList">
+                <f:param name="i" value="1" />
+            </p:menuitem>
 
-
+            <p:menuitem value="Repeat" outcome="Repeat">
+                <f:param name="i" value="3" />
+            </p:menuitem>
+            <p:menuitem value="Carousel" outcome="Carousel">
+                <f:param name="i" value="3" />
+            </p:menuitem>
+        </p:tabMenu>
         <h:form id="form">
             <p:carousel value = "#{asignaturaC.listadoasig}" headerText = "Responsive" var = "car" itemStyle = "text-align: center" responsive = "true">
                 <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
@@ -34,11 +44,11 @@
                     <h:outputText value="$#{car.TT_HP}" />
                     <h:outputText value="$#{car.TT_HT}" />
                 </p:panelGrid>
-<!--                <f:facet name="footer">
-                    <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="pi pi-search">
-                        <f:setPropertyActionListener value="#{car}" target="#{asignaturaC.listar()}" />
-                    </p:commandButton>
-                </f:facet>-->
+                <!--                <f:facet name="footer">
+                                    <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="pi pi-search">
+                                        <f:setPropertyActionListener value="#{car}" target="#{asignaturaC.listar()}" />
+                                    </p:commandButton>
+                                </f:facet>-->
             </p:carousel>
             <p:carousel value="#{asignaturaC.listar()}" headerText="Custom" var="car" itemStyle="height:200px;text-align:center" numVisible="1" easing="easeOutBounce" style="width:250px" circular="true">
                 <h:panelGrid columns="2" style="width:100%" columnClasses="label,value">

@@ -21,20 +21,32 @@
             }
         </style>
         <h:form id="form">
+            <p:tabMenu activeIndex="#{param.i}">
+                <p:menuitem value="PickList" outcome="PickList">
+                    <f:param name="i" value="1" />
+                </p:menuitem>
+
+                <p:menuitem value="Repeat" outcome="Repeat">
+                    <f:param name="i" value="3" />
+                </p:menuitem>
+                <p:menuitem value="Carousel" outcome="Carousel">
+                    <f:param name="i" value="3" />
+                </p:menuitem>
+            </p:tabMenu>
             <p:repeat value="#{departamentoC.listadodept}" var="car">
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
                     <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()">
                         <f:setPropertyActionListener value="#{car}" target="#{departamentoC.selectedDept}" />
                     </p:commandLink>
-                    
+
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
                             <h:outputText value="Codigo:" />
                             <h:outputText value="#{car.CLVDPTO}" style="font-weight: bold"/>
-                            
+
                             <h:outputText value="Nro:" />
                             <h:outputText value="#{car.CODDPTO}" style="font-weight: bold"/>
-                            
+
                             <h:outputText value="Nombre:" />
                             <h:outputText value="#{car.NOMBDPTO}" style="font-weight: bold"/>
                         </h:panelGrid>
@@ -42,7 +54,7 @@
                 </h:panelGrid>
                 <hr />
             </p:repeat>
-            
+
             <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
                 <p:outputPanel id="carDetail" style="text-align:center;">
                     <p:panelGrid  columns="2" rendered="#{not empty departamentoC.selectedDept}" columnClasses="label,value">

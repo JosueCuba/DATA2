@@ -10,6 +10,18 @@
     </h:head>
     <h:body>
         <h:form>
+            <p:tabMenu activeIndex="#{param.i}">
+                <p:menuitem value="PickList" outcome="PickList">
+                    <f:param name="i" value="1" />
+                </p:menuitem>
+
+                <p:menuitem value="Repeat" outcome="Repeat">
+                    <f:param name="i" value="3" />
+                </p:menuitem>
+                <p:menuitem value="Carousel" outcome="Carousel">
+                    <f:param name="i" value="3" />
+                </p:menuitem>
+            </p:tabMenu>
             <p:growl id="msg" showDetail="true" escape="false" />
             <h3 style="margin-top: 0">Lista de profesores</h3>
             <p:pickList id="pickList" 
