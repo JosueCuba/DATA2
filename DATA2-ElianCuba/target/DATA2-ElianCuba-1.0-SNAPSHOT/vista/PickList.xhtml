@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>PickList</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:growl id="msg" showDetail="true" escape="false" />
+            <h3 style="margin-top: 0">Lista de profesores</h3>
+            <p:pickList id="pickList" 
+                        value="#{profesorC.listadoprof}" 
+                        var="cities"
+                        effect="bounce"
+                        showSourceControls="true" 
+                        showTargetControls="true" 
+                        showCheckbox="true"
+                        showSourceFilter="true" 
+                        showTargetFilter="true" 
+                        filterMatchMode="contains"
+                        responsive="true"
+                        itemLabel="#{cities.NOMBPROF}" 
+                        itemValue="#{cities.NOMBPROF}" />
+            <p:commandButton id="citySubmit" 
+                             value="Ver" 
+                             icon="ui-icon-pencil"
+                             update="displayCities" 
+                             oncomplete="PF('cityDialog').show()" 
+                             style="margin-top:30px;background: yellow" />
+
+            <p:dialog modal="true" 
+                      showEffect="fade" 
+                      hideEffect="fade" 
+                      widgetVar="cityDialog"
+                      header="INFORMACIÓN">
+                <h:panelGrid id="displayCities" columns="2">
+                    <h:outputText value="NO SELECCIONADOS : " style="font-weight:bold" />
+                    <ui:repeat value="#{profesorC.listadoprof.source}" var="item">
+                        <h:outputText value="#{item}" style="margin-right:5px" />
+                    </ui:repeat>
+
+                    <h:outputText value="SELECCIONADOS: " style="font-weight:bold" />
+                    <ui:repeat value="#{profesorC.listadoprof.target}" var="item">
+                        <h:outputText value="#{item}" style="margin-right:5px" />
+                    </ui:repeat>
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,8 @@
+model\Departamento.class
+dao\Conexion.class
+dao\ICRUD.class
+dao\ProfesorImpl.class
+controller\ProfesorC.class
+model\Profesor.class
+dao\DepartamentoImpl.class
+controller\DepartamentoC.class

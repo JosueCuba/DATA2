@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <style type="text/css">
+            .logo {
+                width: 5%
+            }
+            .detail {
+                width: 95%;
+                padding-left: 25px;
+            }
+            .detail td {
+                font-size: 24px;
+            }
+        </style>
+        <h:form id="form">
+            <p:repeat value="#{departamentoC.listadodept}" var="car">
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()">
+                        <f:setPropertyActionListener value="#{car}" target="#{departamentoC.selectedDept}" />
+                    </p:commandLink>
+                    
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Codigo:" />
+                            <h:outputText value="#{car.CLVDPTO}" style="font-weight: bold"/>
+                            
+                            <h:outputText value="Nro:" />
+                            <h:outputText value="#{car.CODDPTO}" style="font-weight: bold"/>
+                            
+                            <h:outputText value="Nombre:" />
+                            <h:outputText value="#{car.NOMBDPTO}" style="font-weight: bold"/>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+                <hr />
+            </p:repeat>
+            
+            <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty departamentoC.selectedDept}" columnClasses="label,value">
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{departamentoC.selectedDept.CLVDPTO}" />
+                        <h:outputText value="Color:" />
+                        <h:outputText value="#{departamentoC.selectedDept.CODDPTO}"/>
+                        <h:outputText value="Nombre" />
+                        <h:outputText value="#{departamentoC.selectedDept.NOMBDPTO}" />
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+

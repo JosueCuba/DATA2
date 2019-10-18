@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <style type="text/css">
+            .value {
+                font-weight: bold;
+            }
+
+            .ui-carousel {
+                margin-bottom: 20px;
+            }
+        </style>
+
+
+        <h:form id="form">
+            <p:carousel value = "#{asignaturaC.listadoasig}" headerText = "Responsive" var = "car" itemStyle = "text-align: center" responsive = "true">
+                <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+
+                    <h:outputText value="Codigo:" />
+                    <h:outputText value="#{car.CLVASIGN}" />
+                    <h:outputText value="Clave" />
+                    <h:outputText value="#{car.CLVAREA}" />
+                    <h:outputText value="Nro:" />
+                    <h:outputText value="#{car.CODASIGN}" style="color:#{car.CODASIGN}"/>
+                    <h:outputText value="Nombre" />
+                    <h:outputText value="$#{car.NOMBASIGN}" />
+                    <h:outputText value="$#{car.TT_HP}" />
+                    <h:outputText value="$#{car.TT_HT}" />
+                </p:panelGrid>
+<!--                <f:facet name="footer">
+                    <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="pi pi-search">
+                        <f:setPropertyActionListener value="#{car}" target="#{asignaturaC.listar()}" />
+                    </p:commandButton>
+                </f:facet>-->
+            </p:carousel>
+            <p:carousel value="#{asignaturaC.listar()}" headerText="Custom" var="car" itemStyle="height:200px;text-align:center" numVisible="1" easing="easeOutBounce" style="width:250px" circular="true">
+                <h:panelGrid columns="2" style="width:100%" columnClasses="label,value">
+
+                    <h:outputText value="Codigo:" />
+                    <h:outputText value="#{car.CLVASIGN}" />
+                    <h:outputText value="Clave" />
+                    <h:outputText value="#{car.CLVAREA}" />
+                    <h:outputText value="Nro:" />
+                    <h:outputText value="#{car.CODASIGN}"/>
+                    <h:outputText value="Nombre" />
+                    <h:outputText value="$#{car.NOMBASIGN}" />
+                    <h:outputText value="$#{car.TT_HP}" />
+                    <h:outputText value="$#{car.TT_HT}" />
+
+                    <f:facet name="footer">
+                        <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="pi pi-search">
+                            <f:setPropertyActionListener value="#{car}" target="#{asignaturaC.selectedAsig}" />
+                        </p:commandButton>
+                    </f:facet>
+                </h:panelGrid>
+            </p:carousel>
+        </h:form>
+    </h:body>
+</html>
+
